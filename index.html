@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skibidi Web</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial Black', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 5rem;
+            color: #fff;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+            animation: bounce 1s infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-20px) scale(1.05);
+            }
+        }
+
+        .subtitle {
+            font-size: 2rem;
+            color: #ffeb3b;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .dancing-emoji {
+            font-size: 4rem;
+            display: inline-block;
+            animation: dance 0.5s infinite;
+            margin: 20px;
+        }
+
+        @keyframes dance {
+            0%, 100% {
+                transform: rotate(-10deg);
+            }
+            50% {
+                transform: rotate(10deg);
+            }
+        }
+
+        .button-container {
+            margin-top: 40px;
+        }
+
+        .skibidi-button {
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            border: none;
+            color: white;
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+            margin: 10px;
+        }
+
+        .skibidi-button:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .skibidi-button:active {
+            transform: translateY(-2px);
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(180deg);
+            }
+        }
+
+        .shape1 {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.2);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape2 {
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 235, 59, 0.2);
+            top: 60%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+
+        .shape3 {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 64, 129, 0.2);
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+
+        .shape4 {
+            width: 120px;
+            height: 120px;
+            background: rgba(156, 39, 176, 0.2);
+            top: 30%;
+            right: 25%;
+            animation-delay: 3s;
+        }
+
+        .message {
+            color: white;
+            font-size: 1.2rem;
+            margin-top: 30px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            display: none;
+        }
+
+        .message.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+            .subtitle {
+                font-size: 1.5rem;
+            }
+            .skibidi-button {
+                padding: 15px 30px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shape shape1"></div>
+    <div class="floating-shape shape2"></div>
+    <div class="floating-shape shape3"></div>
+    <div class="floating-shape shape4"></div>
+
+    <div class="container">
+        <h1>🎵 SKIBIDI WEB 🎵</h1>
+        <p class="subtitle">✨ The Most Vibing Website ✨</p>
+        
+        <div class="dancing-emoji">🕺</div>
+        <div class="dancing-emoji">💃</div>
+        <div class="dancing-emoji">🎶</div>
+
+        <div class="button-container">
+            <button class="skibidi-button" onclick="vibeCheck()">VIBE CHECK</button>
+            <button class="skibidi-button" onclick="letsDance()">LET'S DANCE</button>
+        </div>
+
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        const messages = [
+            "🔥 Vibes are immaculate! 🔥",
+            "💯 Energy level: MAX 💯",
+            "✨ You're absolutely vibing! ✨",
+            "🎉 Skibidi approved! 🎉",
+            "🌟 Peak performance achieved! 🌟"
+        ];
+
+        const danceMessages = [
+            "🕺 Dance mode: ACTIVATED! 💃",
+            "🎵 Drop the beat! 🎵",
+            "💫 Show me your moves! 💫",
+            "🎶 Dancing like nobody's watching! 🎶",
+            "🌈 Groove is in the heart! 🌈"
+        ];
+
+        function vibeCheck() {
+            const messageEl = document.getElementById('message');
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            messageEl.textContent = randomMessage;
+            messageEl.classList.remove('show');
+            void messageEl.offsetWidth; // Trigger reflow
+            messageEl.classList.add('show');
+
+            // Add extra animation to body
+            document.body.style.animation = 'none';
+            setTimeout(() => {
+                document.body.style.animation = '';
+            }, 10);
+        }
+
+        function letsDance() {
+            const messageEl = document.getElementById('message');
+            const randomMessage = danceMessages[Math.floor(Math.random() * danceMessages.length)];
+            messageEl.textContent = randomMessage;
+            messageEl.classList.remove('show');
+            void messageEl.offsetWidth; // Trigger reflow
+            messageEl.classList.add('show');
+
+            // Make emojis dance faster
+            const emojis = document.querySelectorAll('.dancing-emoji');
+            emojis.forEach((emoji, index) => {
+                emoji.style.animation = 'none';
+                setTimeout(() => {
+                    emoji.style.animation = `dance 0.2s infinite`;
+                }, index * 50);
+            });
+
+            // Reset after 3 seconds
+            setTimeout(() => {
+                emojis.forEach(emoji => {
+                    emoji.style.animation = 'dance 0.5s infinite';
+                });
+            }, 3000);
+        }
+
+        // Easter egg: Click on title
+        document.querySelector('h1').addEventListener('click', function() {
+            this.style.animation = 'none';
+            setTimeout(() => {
+                this.style.animation = 'bounce 0.3s infinite';
+                setTimeout(() => {
+                    this.style.animation = 'bounce 1s infinite';
+                }, 2000);
+            }, 10);
+        });
+    </script>
+</body>
+</html>
