@@ -19,7 +19,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
         }
 
@@ -241,7 +241,8 @@
             const randomMessage = messages[Math.floor(Math.random() * messages.length)];
             messageEl.textContent = randomMessage;
             messageEl.classList.remove('show');
-            void messageEl.offsetWidth; // Trigger reflow
+            // Trigger reflow to restart CSS animation
+            void messageEl.offsetWidth;
             messageEl.classList.add('show');
 
             // Add extra animation to body
@@ -256,7 +257,8 @@
             const randomMessage = danceMessages[Math.floor(Math.random() * danceMessages.length)];
             messageEl.textContent = randomMessage;
             messageEl.classList.remove('show');
-            void messageEl.offsetWidth; // Trigger reflow
+            // Trigger reflow to restart CSS animation
+            void messageEl.offsetWidth;
             messageEl.classList.add('show');
 
             // Make emojis dance faster
